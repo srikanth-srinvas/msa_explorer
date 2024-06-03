@@ -1,7 +1,7 @@
 # Interactive MSA Explorer and Visualizer
 
 ## Description
-This Python tool empowers users to explore and visualize multiple sequence alignments (MSAs) interactively. It seamlessly integrates Biopython's AlignIO for MSA file reading, Matplotlib for core plotting functionalities, Seaborn for visually appealing graphs, and PyQt5 for the graphical user interface (GUI).
+This Python tool allows users to explore and visualize multiple sequence alignments (MSAs) interactively. It seamlessly integrates Biopython's AlignIO for MSA file reading, Matplotlib for core plotting functionalities, Seaborn for graphs, and PyQt5 for the graphical user interface (GUI) support.
 
 ## Prerequisites
 - Python 3.x
