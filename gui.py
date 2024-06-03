@@ -6,44 +6,46 @@ from visualization import plot_conservation_heatmap
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.msa_data = None  # Stores the loaded MSA data
+        self.msa_data = None
         self.initialize_ui()
 
     def initialize_ui(self):
         self.setWindowTitle("MSA Explorer and Visualizer")
-        self.central_widget = QWidget(self)  # Main widget for layout
+        self.central_widget = QWidget(self)
         self.setCentralWidget(self.central_widget)
 
-        # Create layout and UI elements (buttons, file selection, etc.)
         self.layout = QVBoxLayout(self.central_widget)
+        self.load_button = QPushButton("Load MSA File", self)
+        self.visualize_button = QPushButton("Create Visualization", self)
 
-        # ... (code for creating layout and UI elements)
+        self.layout.addWidget(self.load_button)
+        self.layout.addWidget(self.visualize_button)
 
-        # Connect button clicks to event handlers
         self.load_button.clicked.connect(self.load_msa_file)
         self.visualize_button.clicked.connect(self.create_visualization)
 
-        # ... (code for other event handling functions)
-
     def load_msa_file(self):
-        # Open file dialog and get the selected file path
         filepath, _ = QFileDialog.getOpenFileName(self, "Select MSA File", "", "FASTA files (*.fasta)")
 
         if filepath:
             try:
                 self.msa_data = read_fasta_msa(filepath)
-                # Display success message or enable visualization button
             except Exception as e:
-                # Handle errors gracefully (e.g., display error message)
+                # Handle errors gracefully
                 pass
 
     def create_visualization(self):
         if self.msa_data:
-            # Call visualization function to create the plot
             plot_conservation_heatmap(self.msa_data)
-            # Display the plot in a window or using PyQt widgets
         else:
             # Display a message if no MSA data is loaded
             pass
 
-    # ... (code for other event handling functions)
+def run_gui():
+    app = QApplication(sys.argv)
+    main_window = MainWindow()
+    main_window.show()
+    sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    run_gui()
